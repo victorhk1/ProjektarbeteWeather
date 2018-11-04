@@ -1,0 +1,10 @@
+<body>
+<h1> Victors Weather Project</h1>
+
+<!-- Input field with a dropdown + button. Makes use of /assets/data/city_list.jsons citys-->
+<input type="text" name="search" id="search" list="datalist2" placeholder="Search city & get weather" [(ngModel)]="searchnewplace"/>
+<button (click)="citySearcher()">Search</button>
+<datalist id ="datalist2" *ngIf="city_list"> 
+    <option *ngFor="let city of city_list">{{city.nm}} </option>   
+</datalist> 
+</body>

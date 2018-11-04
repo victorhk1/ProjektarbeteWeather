@@ -1,0 +1,61 @@
+
+<body>
+<h1>Weather for: {{city}}</h1> 
+
+<!-- Table that reads the data for the city-->
+<table border="2">       
+    <tr> 
+        <th>City:</th>
+        <th>Longitude:</th>
+        <th>Latitude:</th>
+        <th>Sunrise:</th>
+        <th>Sunset:</th>
+        <th>Weather:</th>
+        <th>Windspeed & Wind direction:</th>
+        <th>CloudPercentage:</th>
+        <th>Rain (3h):</th>
+        <th>Snow (3h):</th>
+    </tr>
+    <tr>
+        <td>{{city}}</td>
+        <td>{{longitude}}</td>
+        <td>{{latitude}}</td>
+        <td>{{sunriseTime}} CET</td>
+        <td>{{sunsetTime}} CET</td>
+        <td>{{weather}}</td>
+        <td>{{windSpeed}} m/s & {{windDeg}}&deg; {{windDir}}</td>
+        <td>{{cloudPercentage}} %</td>
+        <td *ngIf="rainForecast">{{rainForecast["3h"]}} mm</td>
+        <td *ngIf="snowForecast">{{snowForecast["3h"]}} mm</td>
+
+        
+    </tr> 
+</table>
+
+<br>
+<!-- Return button-->
+<button (click)="goBack()">Return</button>
+
+<h1>Weather prognose for the next days (3h):</h1>
+
+<!-- Table with data with the upcoming forecastdata-->
+<table border="2">
+        <tr>
+            <th>Temperature:</th>
+            <th>Windspeed:</th>
+            <th>Air Pressure:</th>
+            <th>Date & Time:</th>
+        </tr>
+
+
+<tr *ngFor="let forecaster of forecastData.list">
+    <td *ngIf="forecaster.dt >= starterTime && forecaster.dt <= endingTime">{{ forecaster.main.temp }} &deg;C</td>
+    <td *ngIf="forecaster.dt >= starterTime && forecaster.dt <= endingTime">{{ forecaster.wind.speed }} m/s</td>
+    <!-- Sea level, Ground level could be written here but used main pressure only-->
+    <td *ngIf="forecaster.dt >= starterTime && forecaster.dt <= endingTime">{{ forecaster.main.pressure }} hPa</td>
+    <td *ngIf="forecaster.dt >= starterTime && forecaster.dt <= endingTime">{{ forecaster.dt_txt |dateAdd}}</td>                                  
+    </table>
+</body>
+
+
+
