@@ -1,10 +1,17 @@
-<body>
-<h1> Victors Weather Project</h1>
+<!-- As a link -->
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Home</a>
+</nav>
 
-<!-- Input field with a dropdown + button. Makes use of /assets/data/city_list.jsons citys-->
-<input type="text" name="search" id="search" list="datalist2" placeholder="Search city & get weather" [(ngModel)]="searchnewplace"/>
-<button (click)="citySearcher()">Search</button>
-<datalist id ="datalist2" *ngIf="city_list"> 
-    <option *ngFor="let city of city_list">{{city.nm}} </option>   
-</datalist> 
+<body>
+    <br>
+    <h1> Victors Weather Project</h1>
+    <!-- Input field with a dropdown + button. Makes use of /assets/data/city_list.jsons citys-->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" name="search" id="search" list="datalist2" placeholder="Search certain city" [(ngModel)]="searchnewplace" />
+            <button button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="citySearcher()">Search</button>
+            <datalist id="datalist2" *ngIf="city_list">
+                <option *ngFor="let city of city_list">{{city.nm}} </option>
+            </datalist>
+        </form>
 </body>
